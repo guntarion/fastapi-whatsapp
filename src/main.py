@@ -15,9 +15,9 @@ async def process_message(request: MessageRequest):
     to_ = request.to_
 
     if to_ == "62811334932@c.us":
-        return processor1.process_message(body)
+        return await processor1.process_message(body)
     elif to_ == "6282312132187@c.us":
-        return processor2.process_message(body)
+        return await processor2.process_message(body)
     else:
         raise HTTPException(status_code=204)  # No Content
 
