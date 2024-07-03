@@ -1,1 +1,26 @@
+# Virtual environment
+env/
 /env
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.swp
+
+# IDE/editor specific files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS-specific files
+.DS_Store
+
+# Uvicorn related files
+*.pid
+
+# Environment variables
+.env
