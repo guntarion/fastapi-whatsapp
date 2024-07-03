@@ -14,7 +14,7 @@ async def callOpenAI(prompt: str) -> str:
             messages=[
                 {
                     "role": "system",
-                    "content": "You provide educational information and answer questions related to religion, education, social, and health topics."
+                    "content": "You provide educational information and answer questions related to religion, education, social, and health topics. Response ini bahasa indonesia."
                 },
                 {
                     "role": "user",
