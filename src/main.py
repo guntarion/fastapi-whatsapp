@@ -1,24 +1,23 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
+from src.processors import processor1, processor2
 
 app = FastAPI()
 
 class MessageRequest(BaseModel):
     body: str
     from_: str = Field(..., alias='from')
+    to_: str = Field(..., alias='to')
 
-@app.post("/api/process_message")  # Corrected the endpoint path
+@app.post("/process_message")
 async def process_message(request: MessageRequest):
     body = request.body
-    from_ = request.from_
+    to_ = request.to_
 
-    # Implement your message processing logic here
-    if body == "!ping reply":
-        return {"reply": True, "responseMessage": "pong"}
-    elif body == "!ping":
-        return {"reply": False, "responseMessage": "pong"}
-    elif body == "Status":
-        return {"reply": False, "responseMessage": "WhatsApp is Online! 🌟"}    
+    if to_ == "62811334932@c.us":
+        return processor1.process_message(body)
+    elif to_ == "6282312132187@c.us":
+        return processor2.process_message(body)
     else:
         raise HTTPException(status_code=204)  # No Content
 
