@@ -1,10 +1,15 @@
 from fastapi import HTTPException
 from src.openai_service import callOpenAI
+from src.langchain.kb_processor import query_data
 
 async def process_message(body: str):
     if body.startswith("ai "):
         prompt = body[3:]  # Remove 'ai ' from the beginning
         response = await callOpenAI(prompt)
+        return {"reply": True, "responseMessage": response}
+    elif body.startswith("kb "):
+        query = body[3:]  # Remove 'kb ' from the beginning
+        response = await query_data(query)
         return {"reply": True, "responseMessage": response}
     elif body == "ping reply":
         return {"reply": True, "responseMessage": "pong"}
