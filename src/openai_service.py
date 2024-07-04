@@ -10,11 +10,11 @@ client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 async def callOpenAI(prompt: str) -> str:
     try:
         response = await client.chat.completions.create(
-            model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=[
                 {
                     "role": "system",
-                    "content": "You provide educational information and answer questions related to religion, education, social, and health topics. Response ini bahasa indonesia."
+                    "content": "Kamu memberikan informasi edukatif terkait beragam topik. Jawablah dalam Bahasa Indonesia tanpa kalimat pembuka atau penjelasan tambahan."
                 },
                 {
                     "role": "user",
